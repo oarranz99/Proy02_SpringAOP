@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+		<!-- Mapeamos las clases publico y concertista --><aop:aspectj-autoproxy />
+		<bean id="publico" class="com.curso.spring.aop.ejem02.Publico"></bean>
+		<bean id="violinista" class="com.curso.spring.aop.ejem02.Concertista">
+			<property name="obra" value="Vivaldi vol.3"></property>
+		</bean>
+		<bean id="pianista" class="com.curso.spring.aop.ejem02.Concertista">
+			<property name="obra" value="desafina"></property>
+		</bean>
+		<aop:config>
+			<aop:aspect ref="publico"> <!-- la clase transversal -->
+			
+			<!-- Antes de ejecutar el metodo actuar de cualquier 
+				 clase ejecuta el metdo de tomar asientio -->
+				<aop:before method="tomarAsiento" pointcut="execution(* *.actuar(..))"/>
+				
+			<!-- Si despues de ejecutar me devuelve un return normal ejecuta aplaudir... -->
+				<aop:after-returning method="aplaudir" pointcut="execution(* *.actuar(..))"/>
+			<!-- Si despues de ejecutar me devuelve un thowing(error) ejecuta abuchear... -->
+				<aop:after-throwing method="abuchear" pointcut="execution(* *.actuar(..))"/>
+			</aop:aspect>
+		</aop:config>
+</beans>

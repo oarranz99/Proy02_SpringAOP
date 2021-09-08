@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+				<!-- Para declarar en cada clase los aop en vez de en el xml -->
+		<aop:aspectj-autoproxy />
+		
+				<!-- Mapeamos las clases publico y concertista -->
+		<bean id="publico" class="com.curso.spring.aop.ejem03.Publico"></bean>
+		<bean id="violinista" class="com.curso.spring.aop.ejem03.Concertista">
+			<property name="obra" value="Vivaldi vol.3"></property>
+		</bean>
+		<bean id="pianista" class="com.curso.spring.aop.ejem03.Concertista">
+			<property name="obra" value="desafina"></property>
+		</bean>
+		
+</beans>

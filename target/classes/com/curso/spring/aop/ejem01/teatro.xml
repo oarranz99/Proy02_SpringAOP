@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Mapeamos las clases publico y concertista -->
+	
+	<bean id="publico" class="com.curso.spring.aop.ejem01.Publico" ></bean>
+	<bean id="pianista" class="com.curso.spring.aop.ejem01.Concertista" >
+		<property name="obra" value="El volero de Ravel"></property>
+		<property name="publico" ref="publico"></property>
+	
+	</bean>
+</beans>
